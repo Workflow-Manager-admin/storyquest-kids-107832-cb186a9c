@@ -1,0 +1,91 @@
+.dashboard-bg {
+  padding-top: 24px;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+.dashboard-title {
+  text-align: center;
+  font-family: 'Baloo 2', 'Fredoka', sans-serif;
+  color: var(--primary);
+  font-size: 2.7rem;
+  margin-bottom: 28px;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.2rem 1.3rem;
+  max-width: 1120px;
+  margin: 0 auto 34px auto;
+  padding: 0 4vw 36px 4vw;
+}
+.dashboard-card {
+  background: var(--bg-secondary, #f7f7f7);
+  border-radius: 30px;
+  box-shadow: 0 5px 18px #e100ff1f;
+  border: 3px solid #e100ff;
+  padding: 30px 24px 24px 24px;
+  min-height: 320px;
+  max-width: 292px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.6s cubic-bezier(.43,2.28,.77,1);
+}
+@keyframes popIn {
+  0% { transform: scale(0.95) translateY(25px); opacity: 0;}
+  90% { transform: scale(1.05) translateY(-6px); opacity: 1;}
+  100% { transform: scale(1) translateY(0);}
+}
+.dashboard-character {
+  margin-top: -58px;
+  margin-bottom: 10px;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  cursor: pointer;
+  filter: drop-shadow(0 7px 13px #e100ff20);
+}
+.dashboard-story-title {
+  font-size: 1.25rem;
+  font-family: 'Fredoka', 'Baloo 2', sans-serif;
+  font-weight: 700;
+  margin: 15px 0 11px 0;
+  color: var(--primary);
+  text-shadow: 0 3px 10px #e100ff12;
+  min-height: 46px;
+  letter-spacing: 0.01em;
+}
+.dashboard-read-btn {
+  margin-top: auto;
+  background: linear-gradient(90deg, #e100ff 70%, #fabe11 95%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 10px 33px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #e100ff26;
+  transition: background .14s, transform .15s;
+  letter-spacing: 0.04em;
+}
+.dashboard-read-btn:hover,
+.dashboard-read-btn:focus {
+  background: linear-gradient(90deg, #fabe11 20%, #e100ff 90%);
+  color: #fff;
+  transform: scale(1.07);
+}
+@media (max-width: 700px) {
+  .dashboard-title { font-size: 1.7rem;}
+  .dashboard-card { padding: 20px 10px 16px 10px; min-height: 225px;}
+  .dashboard-character { width: 75px; height: 75px; margin-top: -35px;}
+  .dashboard-read-btn { font-size: 1.03rem; padding: 7px 18px;}
+}
