@@ -2,7 +2,7 @@ import React from "react";
 
 // PUBLIC_INTERFACE
 // List of short stories with SVG characters (1 per story)
-export const stories = [
+const initialStories = [
   {
     title: "Benny the Balloon Flies High",
     text: [
@@ -60,23 +60,27 @@ export const stories = [
       </svg>
     ),
   },
-  // ... additional stories up to at least 15:
-  ...Array.from({ length: 12 }, (_, i) => ({
-    title: `Story Page ${i + 4}`,
-    text: [
-      "This is a sample story text.",
-      "You can add your own adventure here.",
-      "Let your imagination fly!",
-    ],
-    character: (
-      <svg width="96" height="96">
-        <circle cx="48" cy="48" r="36" fill="#f7f7f7" stroke="#E100FF" strokeWidth="5" />
-        <ellipse cx="38" cy="43" rx="7" ry="10" fill="#fff" />
-        <ellipse cx="38" cy="43" rx="3" ry="3.5" fill="#070B0E" />
-        <ellipse cx="58" cy="43" rx="7" ry="10" fill="#fff" />
-        <ellipse cx="58" cy="43" rx="3.2" ry="3.5" fill="#070B0E" />
-        <path d="M38 60 Q48 70 58 60" stroke="#070B0E" strokeWidth="3" fill="none" />
-      </svg>
-    ),
-  })),
 ];
+
+const generatedStories = Array.from({ length: 12 }, (_, i) => ({
+  title: `Story Page ${i + 4}`,
+  text: [
+    "This is a sample story text.",
+    "You can add your own adventure here.",
+    "Let your imagination fly!",
+  ],
+  character: (
+    <svg width="96" height="96">
+      <circle cx="48" cy="48" r="36" fill="#f7f7f7" stroke="#E100FF" strokeWidth="5" />
+      <ellipse cx="38" cy="43" rx="7" ry="10" fill="#fff" />
+      <ellipse cx="38" cy="43" rx="3" ry="3.5" fill="#070B0E" />
+      <ellipse cx="58" cy="43" rx="7" ry="10" fill="#fff" />
+      <ellipse cx="58" cy="43" rx="3.2" ry="3.5" fill="#070B0E" />
+      <path d="M38 60 Q48 70 58 60" stroke="#070B0E" strokeWidth="3" fill="none" />
+    </svg>
+  ),
+}));
+
+// PUBLIC_INTERFACE
+// List of short stories with SVG characters (1 per story)
+export const stories = initialStories.concat(generatedStories);
