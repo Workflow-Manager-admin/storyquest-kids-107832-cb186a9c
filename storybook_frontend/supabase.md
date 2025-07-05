@@ -19,7 +19,13 @@ Import `supabase` from `src/supabaseClient.js` in your React code:
 import { supabase } from './supabaseClient';
 ```
 
-You can now call Supabase methods for authentication, database operations, etc.
+You can now call Supabase methods for authentication, users, or stories tables.
+For example, to fetch stories from a Supabase table in the future:
+```js
+const { data, error } = await supabase.from("stories").select("*");
+```
+
+See [Supabase docs](https://supabase.com/docs/reference/javascript/select) for query syntax.
 
 ## Security
 
@@ -28,3 +34,4 @@ The anon key is safe to use in frontend applications but DO NOT use service role
 ## Reference
 
 - [Supabase JS Client Documentation](https://supabase.com/docs/reference/javascript)
+- This app is ready for future enhancements like storing/fetching stories, tracking reading progress, or authentication via Supabase.

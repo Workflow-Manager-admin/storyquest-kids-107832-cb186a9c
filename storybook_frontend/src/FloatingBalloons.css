@@ -1,0 +1,67 @@
+.floating-bg-elements {
+  position: fixed;
+  z-index: 0;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+}
+.float-balloon,
+.float-cloud,
+.float-star {
+  position: absolute;
+  will-change: transform, opacity;
+  opacity: 0.7;
+}
+
+/* Balloons */
+.float-balloon {
+  width: 58px;
+  height: 78px;
+  border-radius: 50% 50% 55% 45%/60% 70% 60% 70%;
+  background: linear-gradient(160deg,#e100ff 55%,#fff 100%);
+  border: 3px solid #070b0e22;
+  animation: floatBalloon 7s infinite ease-in-out alternate;
+  box-shadow: 0 3px 14px #e100ff40;
+}
+.balloon1 { left: 66vw; top: 46vh; animation-delay: 0s;}
+.balloon2 { left: 12vw; top: 42vh; animation-delay: 2.1s;}
+.balloon3 { left: 85vw; top: 3vh;  width: 38px; height: 51px; animation-delay: 5.3s;}
+@keyframes floatBalloon {
+  0%,100% {transform: translateY(0) scale(1) rotate(-2deg);}
+  45%  {transform: translateY(-38px) scale(1.03) rotate(3.5deg);}
+  100% {transform: translateY(0) scale(1) rotate(-2deg);}
+}
+
+/* Clouds */
+.float-cloud {
+  background: #f7f7f7;
+  border-radius: 90px 70px 120px 60px/80px 64px 100px 84px;
+  width: 120px; height: 68px;
+  box-shadow: 30px 15px 80px #070b0e14;
+  opacity: 0.52;
+}
+.cloud1 { left: 30vw; top: 16vh; width: 80px; height: 34px;
+         animation: floatCloud 12.7s linear infinite alternate;}
+.cloud2 { left: 55vw; top: 63vh; width: 96px; height: 48px;
+          animation: floatCloud 9.5s linear infinite alternate;}
+@keyframes floatCloud {
+  0%,100% {transform: translateY(0);}
+  60%     {transform: translateY(-24px);}
+}
+
+/* Stars */
+.float-star {
+  width: 20px; height: 20px;
+  background: gold;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px #ffd700cc);
+  opacity: 0.37;
+  animation: floatStar 14s cubic-bezier(.45,.08,.77,1) infinite alternate;
+}
+.star1 { left: 10vw; top: 9vh; width: 13px; height: 13px;
+         animation-delay: 0.7s;}
+.star2 { left: 89vw; top: 23vh; animation-delay: 5.5s;}
+@keyframes floatStar {
+  0%,100% { transform: translateY(0);}
+  60% { transform: translateY(-31px);}
+}

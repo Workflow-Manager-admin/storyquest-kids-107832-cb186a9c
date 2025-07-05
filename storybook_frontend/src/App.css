@@ -1,104 +1,128 @@
 /* CSS Variables for Theme Management */
 :root {
-  /* Light theme colors */
+  --primary: #e100ff;
+  --secondary: #f7f7f7;
+  --accent: #070b0e;
+  --notebook-border: #fabe11;
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --text-primary: #282c34;
-  --text-secondary: #61dafb;
-  --border-color: #e9ecef;
-  --button-bg: #007bff;
-  --button-text: #ffffff;
+  --bg-secondary: #f7f7f7;
+  --text-primary: #070b0e;
+  --text-secondary: #e100ff;
+  --footer-bg: #f0d6ff;
 }
 
-[data-theme="dark"] {
-  /* Dark theme colors */
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #282c34;
-  --text-primary: #ffffff;
-  --text-secondary: #61dafb;
-  --border-color: #404040;
-  --button-bg: #0056b3;
-  --button-text: #ffffff;
-}
-
-.App {
-  text-align: center;
-  background-color: var(--bg-primary);
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Fredoka", "Baloo 2", "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: var(--bg-primary);
   color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: var(--bg-secondary);
+.storybook-app-bg {
+  background: var(--bg-primary);
   min-height: 100vh;
+  min-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Notebook layout: center container, flex row arrows, vertical center */
+.storybook-app-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  z-index: 10;
+}
+
+.storybook-notebook-container {
+  margin: 56px 8vw 32px 8vw;
+  background: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease;
-  position: relative;
+  width: 100%;
+  min-width: 250px;
 }
 
-.App-link {
-  color: var(--text-secondary);
-  transition: color 0.3s ease;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 14px;
+.storybook-footer {
+  background: var(--footer-bg);
+  color: var(--accent);
+  font-family: 'Fredoka', 'Baloo 2', sans-serif;
+  font-size: 20px;
   font-weight: 600;
+  border-radius: 32px;
+  margin: 14px auto 0 auto;
+  box-shadow: 0 2px 10px #e100ff14;
+  padding: 0.1em 2em 0.25em 2em;
+}
+
+/* Big arrows for navigation */
+.storybook-nav-arrow {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  min-width: 62px;
+  min-height: 62px;
+  font-size: 2.6rem;
+  font-family: inherit;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+  border-radius: 50%;
+  align-self: center;
+  box-shadow: 0 5px 26px #e100ff33;
+  margin: 0 1vw;
+  user-select: none;
+  filter: drop-shadow(0 0px 7px #e100ff25);
+  transition: transform 0.1s cubic-bezier(.4,2,.5,1),box-shadow 0.18s cubic-bezier(.4,2,.5,1);
+  z-index: 30;
+}
+.storybook-nav-arrow:hover, .storybook-nav-arrow:focus {
+  transform: scale(1.13);
+  box-shadow: 0 8px 38px #e100ff3d;
+  background: linear-gradient(to bottom, #e100ff, #fabe11 80%);
+}
+.storybook-nav-arrow:active {
+  transform: scale(0.97);
 }
 
-.theme-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  opacity: 0.9;
-}
+.storybook-nav-arrow-left { margin-left: 0; margin-right: 0.5vw;}
+.storybook-nav-arrow-right { margin-right: 0; margin-left: 0.5vw;}
 
-.theme-toggle:active {
-  transform: translateY(0);
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Responsive design for mobile (stack arrows, reduce card size) */
+@media (max-width: 840px) {
+  .storybook-app-flex {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: 100vw;
+    min-height: 100vh;
   }
-  to {
-    transform: rotate(360deg);
+  .storybook-nav-arrow {
+    margin: 16px auto;
+    min-width: 46px;
+    min-height: 46px;
+    font-size: 2.1rem;
   }
+  .storybook-notebook-container {
+    margin: 10px auto 18px auto;
+    width: 100vw;
+    min-width: 180px;
+  }
+  .storybook-footer { font-size: 16px; padding: 0.12em 1.3em;}
 }
 
-/* Responsive design for mobile */
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: 10px;
-    right: 10px;
-    padding: 8px 16px;
-    font-size: 12px;
-  }
+/* Hide arrows for single-page storybooks */
+.storybook-nav-arrow[disabled] {
+  opacity: 0.3;
+  pointer-events: none;
 }

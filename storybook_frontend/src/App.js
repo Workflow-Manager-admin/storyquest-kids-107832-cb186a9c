@@ -1,47 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import "@fontsource/baloo-2/600.css";
+import "@fontsource/fredoka/700.css";
+import StoryBookPage from "./StoryBookPage";
+import FloatingBalloons from "./FloatingBalloons";
+import { stories } from "./sampleStories";
 
-// PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
+  // PUBLIC_INTERFACE
+  // Main storybook app UI for displaying kid stories with playful, fullscreen layout
+  const [currentPage, setCurrentPage] = useState(0);
 
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  // For later: fetch stories from Supabase, but for now use local
+  const totalPages = stories.length;
 
   // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+  const handlePrev = () => {
+    setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  };
+
+  // PUBLIC_INTERFACE
+  const handleNext = () => {
+    setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+    <div className="storybook-app-bg">
+      <FloatingBalloons />
+      <div className="storybook-app-flex">
+        <button
+          className="storybook-nav-arrow storybook-nav-arrow-left"
+          aria-label="Previous story"
+          onClick={handlePrev}
         >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+          &#8592;
         </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <main className="storybook-notebook-container" aria-live="polite">
+          <StoryBookPage story={stories[currentPage]} />
+          <footer className="storybook-footer">
+            Page {currentPage + 1} of {totalPages}
+          </footer>
+        </main>
+        <button
+          className="storybook-nav-arrow storybook-nav-arrow-right"
+          aria-label="Next story"
+          onClick={handleNext}
         >
-          Learn React
-        </a>
-      </header>
+          &#8594;
+        </button>
+      </div>
     </div>
   );
 }
